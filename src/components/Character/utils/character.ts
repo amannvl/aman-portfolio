@@ -20,6 +20,7 @@ const setCharacter = (
           "/models/character.enc?v=2",
           "MyCharacter12"
         );
+
         const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
 
         let character: THREE.Object3D;
@@ -34,12 +35,16 @@ const setCharacter = (
 
                 // Change clothing colors to match site theme
                 if (mesh.material) {
-                  if (mesh.name === "BODY.SHIRT") { // The shirt mesh
-                    const newMat = (mesh.material as THREE.Material).clone() as THREE.MeshStandardMaterial;
+                  const newMat = (
+                    mesh.material as THREE.Material
+                  ).clone() as THREE.MeshStandardMaterial;
+
+                  if (mesh.name === "BODY.SHIRT") {
                     newMat.color = new THREE.Color("#8B4513");
+                    newMat.roughness = 0.8;
+                    newMat.metalness = 0;
                     mesh.material = newMat;
                   } else if (mesh.name === "Pant") {
-                    const newMat = (mesh.material as THREE.Material).clone() as THREE.MeshStandardMaterial;
                     newMat.color = new THREE.Color("#000000");
                     mesh.material = newMat;
                   }
@@ -59,10 +64,12 @@ const setCharacter = (
             // Monitor scale is handled by GsapScroll.ts animations
 
             dracoLoader.dispose();
+            URL.revokeObjectURL(blobUrl);
           },
           undefined,
           (error) => {
             console.error("Error loading GLTF model:", error);
+            URL.revokeObjectURL(blobUrl);
             reject(error);
           }
         );

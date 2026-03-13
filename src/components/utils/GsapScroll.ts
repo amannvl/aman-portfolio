@@ -1,6 +1,45 @@
 import * as THREE from "three";
 import gsap from "gsap";
 
+export function setHeroTimeline() {
+  const heroTimeline = gsap.timeline({
+    scrollTrigger: {
+      id: "hero-landing",
+      trigger: ".landing-section",
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  if (window.innerWidth > 1024) {
+    heroTimeline
+      .fromTo(".hero-visual", { xPercent: 0 }, { xPercent: -14, duration: 1 }, 0)
+      .fromTo(".hero-stage", { rotateY: -14 }, { rotateY: 10, duration: 1 }, 0)
+      .fromTo(
+        ".hero-panel-main",
+        { yPercent: 0 },
+        { yPercent: -10, duration: 1 },
+        0
+      )
+      .fromTo(
+        ".hero-panel-side",
+        { yPercent: 0 },
+        { yPercent: 6, duration: 1 },
+        0
+      )
+      .to(".landing-container", { opacity: 0, duration: 0.4 }, 0)
+      .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
+      .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
+  } else {
+    heroTimeline
+      .fromTo(".hero-visual", { yPercent: 0 }, { yPercent: -14, duration: 1 }, 0)
+      .fromTo(".hero-stage", { scale: 1 }, { scale: 0.92, duration: 1 }, 0)
+      .to(".landing-container", { opacity: 0.15, duration: 0.5 }, 0);
+  }
+}
+
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
   camera: THREE.PerspectiveCamera
@@ -11,6 +50,7 @@ export function setCharTimeline(
   }, 200);
   const tl1 = gsap.timeline({
     scrollTrigger: {
+      id: "character-landing",
       trigger: ".landing-section",
       start: "top top",
       end: "bottom top",
@@ -20,6 +60,7 @@ export function setCharTimeline(
   });
   const tl2 = gsap.timeline({
     scrollTrigger: {
+      id: "character-about",
       trigger: ".about-section",
       start: "center 55%",
       end: "bottom top",
@@ -29,6 +70,7 @@ export function setCharTimeline(
   });
   const tl3 = gsap.timeline({
     scrollTrigger: {
+      id: "character-whatido",
       trigger: ".whatIDO",
       start: "top top",
       end: "bottom top",
@@ -135,6 +177,7 @@ export function setCharTimeline(
 export function setAllTimeline() {
   const careerTimeline = gsap.timeline({
     scrollTrigger: {
+      id: "career-main",
       trigger: ".career-section",
       start: "top 30%",
       end: "100% center",

@@ -13,4 +13,15 @@ const encryptFile = (inputFile, outputFile, password) => {
   input.pipe(cipher).pipe(output);
 };
 
-encryptFile("character.glb", "character.enc", "Character3D#@");
+const encryptIfPresent = (inputFile, outputFile, password) => {
+  if (!fs.existsSync(inputFile)) {
+    console.log(`Skipping ${inputFile} because it does not exist.`);
+    return;
+  }
+
+  encryptFile(inputFile, outputFile, password);
+  console.log(`Encrypted ${inputFile} -> ${outputFile}`);
+};
+
+// Keep this password aligned with src/components/Character/utils/character.ts
+encryptIfPresent("character.glb", "character.enc", "MyCharacter12");

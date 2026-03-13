@@ -11,23 +11,87 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
+type TechItem = {
+  label: string;
+  color: string;
+};
+
+const techItems: TechItem[] = [
+  { label: "Golang", color: "#5eead4" },
+  { label: "Python", color: "#f59e0b" },
+  { label: "PHP", color: "#a78bfa" },
+  { label: "JavaScript", color: "#facc15" },
+  { label: "Microservices", color: "#38bdf8" },
+  { label: "REST APIs", color: "#22c55e" },
+  { label: "Event-Driven Systems", color: "#fb7185" },
+  { label: "Kafka", color: "#f97316" },
+  { label: "AWS", color: "#f59e0b" },
+  { label: "Azure", color: "#60a5fa" },
+  { label: "Docker", color: "#38bdf8" },
+  { label: "Kubernetes", color: "#818cf8" },
+  { label: "Helm", color: "#2dd4bf" },
+  { label: "Terraform", color: "#c084fc" },
+  { label: "PostgreSQL", color: "#93c5fd" },
+  { label: "SQL", color: "#34d399" },
+  { label: "ElasticSearch", color: "#a3e635" },
+  { label: "CI/CD Pipelines", color: "#fda4af" },
+  { label: "Distributed Systems", color: "#67e8f9" },
+  { label: "Scalability", color: "#f472b6" },
+  { label: "Reliability", color: "#fbbf24" },
 ];
-const textures = imageUrls.map((url) => textureLoader.load(url));
+
+function createTechTexture(label: string, color: string) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 1024;
+
+  const context = canvas.getContext("2d");
+  if (!context) {
+    return new THREE.CanvasTexture(canvas);
+  }
+
+  context.fillStyle = "#09111d";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  const gradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+  gradient.addColorStop(0, `${color}44`);
+  gradient.addColorStop(1, "#050810");
+  context.fillStyle = gradient;
+  context.fillRect(40, 40, canvas.width - 80, canvas.height - 80);
+
+  context.strokeStyle = color;
+  context.lineWidth = 14;
+  context.strokeRect(54, 54, canvas.width - 108, canvas.height - 108);
+
+  context.fillStyle = color;
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+
+  const fontSize = label.length > 11 ? 108 : label.length > 8 ? 124 : 148;
+  context.font = `700 ${fontSize}px Geist, sans-serif`;
+
+  const words = label.split(" ");
+  if (words.length > 1) {
+    const firstLine = words.slice(0, Math.ceil(words.length / 2)).join(" ");
+    const secondLine = words.slice(Math.ceil(words.length / 2)).join(" ");
+    context.fillText(firstLine, canvas.width / 2, canvas.height / 2 - 70);
+    context.fillText(secondLine, canvas.width / 2, canvas.height / 2 + 90);
+  } else {
+    context.fillText(label, canvas.width / 2, canvas.height / 2);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.needsUpdate = true;
+  return texture;
+}
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
-const spheres = [...Array(30)].map(() => ({
-  scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
+const spheres = techItems.map((item) => ({
+  ...item,
+  scale:
+    item.label.length > 11 ? 1.15 : item.label.length > 8 ? 1 : 0.9,
 }));
 
 type SphereProps = {
@@ -152,18 +216,18 @@ const TechStack = () => {
     };
   }, []);
   const materials = useMemo(() => {
-    return textures.map(
-      (texture) =>
-        new THREE.MeshPhysicalMaterial({
-          map: texture,
-          emissive: "#ffffff",
-          emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
-        })
-    );
+    return spheres.map(({ label, color }) => {
+      const texture = createTechTexture(label, color);
+      return new THREE.MeshPhysicalMaterial({
+        map: texture,
+        emissive: new THREE.Color(color),
+        emissiveMap: texture,
+        emissiveIntensity: 0.35,
+        metalness: 0.35,
+        roughness: 0.95,
+        clearcoat: 0.15,
+      });
+    });
   }, []);
 
   return (
@@ -193,7 +257,7 @@ const TechStack = () => {
             <SphereGeo
               key={i}
               {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
+              material={materials[i]}
               isActive={isActive}
             />
           ))}

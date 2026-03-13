@@ -34,7 +34,24 @@ h6 {
 }
 
 body {
-  overflow: hidden;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--backgroundColor);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accentColor);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4cc0af;
 }
 
 a {
