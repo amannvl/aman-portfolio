@@ -21,6 +21,17 @@
   margin: auto;
 }
 
+/* ── Loading & Empty States ── */
+.loading-projects,
+.no-projects {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #adacac;
+  border-top: 1px solid #363636;
+  border-bottom: 1px solid #363636;
+}
+
 /* ── Carousel ── */
 .carousel-wrapper {
   position: relative;
@@ -105,6 +116,50 @@
   color: #adacac;
   margin: 6px 0 0;
   font-size: 15px;
+}
+
+/* ── Project Links ── */
+.project-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #eae5ec;
+}
+
+.project-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.live-link:hover {
+  background: rgba(94, 234, 212, 0.15);
+  border-color: var(--accentColor);
+  color: var(--accentColor);
+}
+
+.github-link:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+}
+
+.project-link svg {
+  font-size: 16px;
 }
 
 .carousel-image-wrapper {

@@ -6,8 +6,18 @@ import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
+import { downloadResume } from "../utils/resumeDownloader";
 
 const SocialIcons = () => {
+  const handleResumeDownload = async () => {
+    try {
+      await downloadResume();
+    } catch (error) {
+      console.error('Resume download failed:', error);
+      // Error is already handled in the downloadResume function
+    }
+  };
+
   useEffect(() => {
     const social = document.getElementById("social") as HTMLElement;
 
@@ -68,12 +78,12 @@ const SocialIcons = () => {
           </a>
         </span>
       </div>
-      <a className="resume-button" href="https://assets.zyrosite.com/Y4LJM9kOgKSOQOB4/amansharma-2025pdf-AMq8N5Elr6iMeeO5.pdf" target="_blank">
+      <button className="resume-button" onClick={handleResumeDownload} data-cursor="disable">
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />
         </span>
-      </a>
+      </button>
     </div>
   );
 };

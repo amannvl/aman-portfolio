@@ -1,0 +1,101 @@
+[
+  {
+    "id": "datamorph",
+    "title": "DataMorph",
+    "category": "Personal Project",
+    "tools": "React, Vite, JavaScript",
+    "image": "datamorph.png",
+    "liveUrl": "https://datamorph.codewithaman.in/",
+    "githubUrl": "https://github.com/amannvl/datamorph"
+  },
+  {
+    "id": "qrcode-generator",
+    "title": "QR Code Generator",
+    "category": "Personal Project",
+    "tools": "HTML, CSS, JavaScript",
+    "image": "qrcode.png",
+    "liveUrl": "https://qrcode.codewithaman.in/",
+    "githubUrl": "https://github.com/amannvl/qrcodegenerator"
+  },
+  {
+    "id": "url-shortner",
+    "title": "URL Shortener",
+    "category": "Personal Project",
+    "tools": "Golang, HTML, CSS, JavaScript",
+    "image": "urlshortner.png",
+    "liveUrl": "https://urlshortner.codewithaman.in/",
+    "githubUrl": "https://github.com/amannvl/urlshortner"
+  },
+  {
+    "id": "ritika-portfolio",
+    "title": "Ritika Portfolio Website",
+    "category": "Personal Project",
+    "tools": "React, Vite, Tailwind CSS, Three.js, Framer Motion",
+    "image": "ritika.png",
+    "liveUrl": "https://ritika.codewithaman.in/",
+    "githubUrl": "https://github.com/amannvl/ritika-portfolio"
+  },
+  {
+    "id": "timesync",
+    "title": "TimeSync",
+    "category": "Personal Project",
+    "tools": "HTML, CSS, JavaScript",
+    "image": "timesync.png",
+    "liveUrl": "https://timesync.codewithaman.in/",
+    "githubUrl": "https://github.com/amannvl/timesync"
+  },
+  {
+    "id": "portfolio",
+    "title": "Portfolio Website",
+    "category": "Personal Project",
+    "tools": "React, TypeScript, Three.js",
+    "image": "portfolio.png",
+    "liveUrl": "https://codewithaman.in",
+    "githubUrl": "https://github.com/amannvl/aman-portfolio"
+  },
+  {
+    "id": "orchestration-engine",
+    "title": "Orchestration Engine",
+    "category": "Microservices & Automation",
+    "tools": "Golang, Kafka, Argo, CI/CD",
+    "image": "orchestration-engine.png",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "transcoder-engine",
+    "title": "TRANSCODER Engine",
+    "category": "Media Processing",
+    "tools": "Golang, AWS, ElasticSearch",
+    "image": "transcoder-engine.png",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "slike-cms",
+    "title": "SLIKE CMS",
+    "category": "Content Management",
+    "tools": "Golang, PHP, ElasticSearch",
+    "image": "slike-cms.png",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "telemetry-agent",
+    "title": "Telemetry Agent",
+    "category": "Device Monitoring",
+    "tools": "Golang, System Scanning",
+    "image": "telemetry-agent.png",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "e-learning-platform",
+    "title": "E-Learning Platform",
+    "category": "Full Stack Web App",
+    "tools": "Django, PostgreSQL, AWS",
+    "image": "e-learning-platform.png",
+    "liveUrl": "",
+    "githubUrl": ""
+  }
+]
